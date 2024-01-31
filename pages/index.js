@@ -14,7 +14,7 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <Link href="/new" passHref>
+      <Link href="/newTrip" passHref>
         <Button variant="success">Create Trip</Button>
       </Link>
     </div>
