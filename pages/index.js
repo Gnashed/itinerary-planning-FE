@@ -1,6 +1,9 @@
-import { Button } from 'react-bootstrap';
-import { signOut } from '../utils/auth';
+// import { Button } from 'react-bootstrap';
+// import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import LoginPage from '../components/LoginPage';
+// import TripDetails from '../components/TripDetails';
+// import Signin from '../components/Signin';
 
 function Home() {
   const { user } = useAuth();
@@ -14,12 +17,18 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.fbUser.displayName}! </h1>
+      {/* <h1>Hello {user.fbUser.displayName}! </h1>
       <p>Your Bio: {user.bio}</p>
       <p>Click the button below to logout!</p>
       <Button variant="danger" type="button" size="lg" className="copy-btn" onClick={signOut}>
         Sign Out
-      </Button>
+      </Button> */}
+
+      {/* Delete below components. Only for testing */}
+
+      <LoginPage />
+      {/* <TripDetails /> */}
+
     </div>
   );
 }
