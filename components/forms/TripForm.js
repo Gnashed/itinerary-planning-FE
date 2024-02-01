@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 
+// TODO: REFACTOR FOR FUNCTIONALITY HANDLING/SUBMITTING FORM TO ALL TRIPS PAGE
+// TODO: ROUTE TO ALL TRIPS PAGE
+// TODO: UPDATE FUNCTIONALITY USING TERNARY
+
 const initialState = {
   tripName: '',
   travelerName: '',
@@ -105,6 +109,7 @@ export default function TripForm({ obj }) {
           required
         />
       </FloatingLabel>
+
       {/* SUBMIT BUTTON  */}
       <Button variant="success" type="submit">Create Member</Button>
     </Form>
