@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-export default function AllTrips() {
+export default function TripCard() {
   return (
     <Card style={{ width: '22rem' }}>
       <Card.Header>Name</Card.Header>
