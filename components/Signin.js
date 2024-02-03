@@ -19,7 +19,7 @@ function Signin() {
       }}
     >
       <h1>We Put the IT in Itinerary</h1>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+      <Button type="button" variant="primary" size="lg" className="copy-btn" onClick={signIn}>
         Get Started
       </Button>
     </div>
