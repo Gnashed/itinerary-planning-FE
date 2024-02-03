@@ -18,6 +18,10 @@ function Home() {
       <Link href="/newTrip" passHref>
         <Button variant="success">Create Trip</Button>
       </Link>
+      <Link href="/activityMenu" passHref>
+        <Button variant="warning">Activities</Button>
+      </Link>
+      {/* Testing to see if activities render */}
     </div>
   );
 }
