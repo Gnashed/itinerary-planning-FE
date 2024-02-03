@@ -6,6 +6,7 @@ function Signin() {
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
+      id="signin-bg-img"
       style={{
         height: '90vh',
         padding: '30px',
@@ -17,10 +18,9 @@ function Signin() {
         paddingBlock: '0 5rem',
       }}
     >
-      <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
-        Sign In
+      <h1>We Put the IT in Itinerary</h1>
+      <Button type="button" variant="primary" size="lg" className="copy-btn" onClick={signIn}>
+        Get Started
       </Button>
     </div>
   );

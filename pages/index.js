@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 // import { useAuth } from '../utils/context/authContext';
+// import AllTrips from '../components/AllTrips';
 
 function Home() {
   // const { user } = useAuth();
