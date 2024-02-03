@@ -28,7 +28,7 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
 });
 
 // DELETE ACTIVITY
-// TODO: DELETE BOOK
+// TODO: DELETE ACTIVITY
 const deleteActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/activity/${id}`, {
     method: 'DELETE',
