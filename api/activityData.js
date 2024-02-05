@@ -28,7 +28,6 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
 });
 
 // DELETE ACTIVITY
-// TODO: DELETE ACTIVITY
 const deleteActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/activity/${id}`, {
     method: 'DELETE',
@@ -58,7 +57,7 @@ const createActivity = (payload) => new Promise((resolve, reject) => {
 // UPDATE ACTIVITY
 const updateActivity = (payload) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/activity/${payload.id}`, {
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
     },

@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
+import { updateActivity } from '../../api/activityData';
 
 // TODO: REFACTOR FOR FUNCTIONALITY HANDLING/SUBMITTING FORM TO ALL TRIPS PAGE
 // TODO: ROUTE TO ALL TRIPS PAGE
 // TODO: UPDATE FUNCTIONALITY USING TERNARY
 
 const initialState = {
-  tripName: '',
-  travelerName: '',
   destination: '',
   transportation: '',
   startDate: '',
@@ -18,9 +17,9 @@ const initialState = {
 
 export default function TripForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  // const router = useRouter();
+  const router = useRouter();
   useEffect(() => {
-    if (obj) setFormInput(obj);
+    if (obj.id) setFormInput(obj);
   }, [obj]);
 
   const handleChange = (e) => {
@@ -33,6 +32,9 @@ export default function TripForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (obj.id) {
+      updateActivity(formInput).then(() => router.push(`/author/${obj.id}`));
+    }
   };
 
   return (
@@ -124,6 +126,7 @@ TripForm.propTypes = {
     transportation: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
+    id: PropTypes.string,
   }),
 };
 

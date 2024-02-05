@@ -26,6 +26,8 @@ export default function ActivityCard({ activityObj, onUpdate }) {
           DELETE
         </Button>
       </Card.Body>
+      <Card.Footer className="text-muted text-center">${activityObj.cost}</Card.Footer>
+
     </Card>
   );
 }
