@@ -33,7 +33,7 @@ export default function TripForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateActivity(formInput).then(() => router.push(`/author/${obj.id}`));
+      updateActivity(formInput).then(() => router.push(`/trips/${obj.id}`));
     }
   };
 
