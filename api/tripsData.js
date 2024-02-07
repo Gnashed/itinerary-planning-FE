@@ -48,7 +48,7 @@ const deleteSingleTrip = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default {
+export {
   getTrips,
   createNewTrip,
   updateSingleTrip,
