@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TripCard from '../components/TripCard';
-import getTrips from '../api/tripsData';
+import { getTrips } from '../api/tripsData';
 
 export default function CreateTrip() {
   const [trips, setTrips] = useState([]);

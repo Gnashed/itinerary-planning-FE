@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
-import { createActivity, updateActivity } from '../../api/activityData';
+import { createNewTrip, updateSingleTrip } from '../../api/tripsData';
 
 const initialState = {
   destination: '',
@@ -29,12 +29,12 @@ export default function TripForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateActivity(formInput).then(() => router.push(`/trips/${obj.id}`));
+      updateSingleTrip(formInput).then(() => router.push(`/trips/${obj.id}`));
     } else {
       const payload = { ...formInput };
-      createActivity(payload).then(({ name }) => {
+      createNewTrip(payload).then(({ name }) => {
         const putPayload = { id: name };
-        updateActivity(putPayload).then(() => {
+        updateSingleTrip(putPayload).then(() => {
           router.push('/trips');
         });
       });
@@ -44,30 +44,6 @@ export default function TripForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       <h2 className="text-blue mt-5">Create Trip</h2>
-
-      {/* TRIP NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Trip Name" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter trip name"
-          name="tripName"
-          value={formInput.tripName}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
-
-      {/* TRAVELER NAME INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="Traveler Name" className="mb-3">
-        <Form.Control
-          type="text"
-          placeholder="Enter traveler name"
-          name="travelerName"
-          value={formInput.travelerName}
-          onChange={handleChange}
-          required
-        />
-      </FloatingLabel>
 
       {/* DESTINATION INPUT  */}
       <FloatingLabel controlId="floatingInput3" label="Destination Name" className="mb-3">
@@ -124,8 +100,6 @@ export default function TripForm({ obj }) {
 
 TripForm.propTypes = {
   obj: PropTypes.shape({
-    tripName: PropTypes.string,
-    travelerName: PropTypes.string,
     destination: PropTypes.string,
     transportation: PropTypes.string,
     startDate: PropTypes.string,
