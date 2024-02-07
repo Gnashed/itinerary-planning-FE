@@ -7,7 +7,7 @@ import { createActivity, updateActivity } from '../../api/activityData';
 const initialState = {
   name: '',
   description: '',
-  lengthOfTime: '',
+  length_of_time: '',
   cost: '',
 };
 
@@ -50,8 +50,8 @@ export default function ActivityForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter activity name"
-          name="activityName"
-          value={formInput.activityName}
+          name="name"
+          value={formInput.name}
           onChange={handleChange}
           required
         />
@@ -62,8 +62,8 @@ export default function ActivityForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter description"
-          name="activityDescription"
-          value={formInput.activityDescription}
+          name="description"
+          value={formInput.description}
           onChange={handleChange}
           required
         />
@@ -74,8 +74,8 @@ export default function ActivityForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter length of time"
-          name="lengthOfTime"
-          value={formInput.lengthOfTime}
+          name="length_of_time"
+          value={formInput.length_of_time}
           onChange={handleChange}
           required
         />
@@ -101,9 +101,9 @@ export default function ActivityForm({ obj }) {
 
 ActivityForm.propTypes = {
   obj: PropTypes.shape({
-    activityName: PropTypes.string,
-    activityDescription: PropTypes.string,
-    lengthOfTime: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    length_of_time: PropTypes.string,
     cost: PropTypes.string,
     id: PropTypes.string,
   }),
