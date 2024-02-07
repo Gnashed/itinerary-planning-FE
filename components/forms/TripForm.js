@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
-
-// TODO: REFACTOR FOR FUNCTIONALITY HANDLING/SUBMITTING FORM TO ALL TRIPS PAGE
-// TODO: ROUTE TO ALL TRIPS PAGE
-// TODO: UPDATE FUNCTIONALITY USING TERNARY
+import { createActivity, updateActivity } from '../../api/activityData';
 
 const initialState = {
-  tripName: '',
-  travelerName: '',
   destination: '',
   transportation: '',
   startDate: '',
@@ -18,9 +13,9 @@ const initialState = {
 
 export default function TripForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
-  // const router = useRouter();
+  const router = useRouter();
   useEffect(() => {
-    if (obj) setFormInput(obj);
+    if (obj.id) setFormInput(obj);
   }, [obj]);
 
   const handleChange = (e) => {
@@ -33,6 +28,17 @@ export default function TripForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (obj.id) {
+      updateActivity(formInput).then(() => router.push(`/trips/${obj.id}`));
+    } else {
+      const payload = { ...formInput };
+      createActivity(payload).then(({ name }) => {
+        const putPayload = { id: name };
+        updateActivity(putPayload).then(() => {
+          router.push('/trips');
+        });
+      });
+    }
   };
 
   return (
@@ -111,7 +117,7 @@ export default function TripForm({ obj }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button variant="success" type="submit">Create Member</Button>
+      <Button variant="success" type="submit">Create Trip</Button>
     </Form>
   );
 }
@@ -124,6 +130,7 @@ TripForm.propTypes = {
     transportation: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
+    id: PropTypes.string,
   }),
 };
 

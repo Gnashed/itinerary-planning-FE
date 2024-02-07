@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ActivityCard from '../components/ActivityCard';
-import getActivities from '../api/activityData';
+import { getActivities } from '../api/activityData';
 
 export default function Activities() {
   const [activities, setActivities] = useState([]);

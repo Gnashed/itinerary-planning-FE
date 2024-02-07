@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import Link from 'next/link';
+import { deleteActivity } from '../api/activityData';
 
 export default function ActivityCard({ activityObj, onUpdate }) {
   const deleteThisActivity = () => {
-    if (window.confirm(`Delete ${activityObj}?`)) {
-      deleteThisActivity(activityObj.id).then(() => onUpdate());
+    if (window.confirm(`Delete ${activityObj.name}?`)) {
+      deleteActivity(activityObj.id).then(() => onUpdate());
     }
   };
 
@@ -18,13 +19,15 @@ export default function ActivityCard({ activityObj, onUpdate }) {
         <Card.Text>
           {activityObj.description}
         </Card.Text>
-        <Link href={`/book/edit/${activityObj.id}`} passHref>
+        <Link href={`/activty/edit/${activityObj.id}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisActivity} className="m-2">
           DELETE
         </Button>
       </Card.Body>
+      <Card.Footer className="text-muted text-center">${activityObj.cost}</Card.Footer>
+
     </Card>
   );
 }
