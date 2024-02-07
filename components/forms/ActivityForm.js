@@ -9,7 +9,6 @@ const initialState = {
   description: '',
   lengthOfTime: '',
   cost: '',
-  planned: false,
 };
 
 export default function ActivityForm({ obj }) {
@@ -94,22 +93,6 @@ export default function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* TOGGLE PLANNED  */}
-      <Form.Check
-        className="text-white mb-3"
-        type="switch"
-        id="planned"
-        name="planned"
-        label="Planned?"
-        checked={formInput.planned}
-        onChange={(e) => {
-          setFormInput((prevState) => ({
-            ...prevState,
-            planned: e.target.checked,
-          }));
-        }}
-      />
-
       {/* SUBMIT BUTTON  */}
       <Button variant="success" type="submit">{obj.id ? 'Update' : 'Create'} Activity</Button>
     </Form>
@@ -122,7 +105,6 @@ ActivityForm.propTypes = {
     activityDescription: PropTypes.string,
     lengthOfTime: PropTypes.string,
     cost: PropTypes.string,
-    planned: PropTypes.bool,
     id: PropTypes.string,
   }),
 };

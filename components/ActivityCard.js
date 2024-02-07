@@ -19,7 +19,7 @@ export default function ActivityCard({ activityObj, onUpdate }) {
         <Card.Text>
           {activityObj.description}
         </Card.Text>
-        <Link href={`/activty/edit/${activityObj.id}`} passHref>
+        <Link href={`/activity/edit/${activityObj.id}`} passHref>
           <Button variant="info">EDIT</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisActivity} className="m-2">
@@ -34,7 +34,7 @@ export default function ActivityCard({ activityObj, onUpdate }) {
 
 ActivityCard.propTypes = {
   activityObj: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     name: PropTypes.string,
     description: PropTypes.string,
     length_of_time: PropTypes.string,
