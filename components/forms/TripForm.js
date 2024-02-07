@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
-import { updateActivity } from '../../api/activityData';
-
-// TODO: REFACTOR FOR FUNCTIONALITY HANDLING/SUBMITTING FORM TO ALL TRIPS PAGE
-// TODO: ROUTE TO ALL TRIPS PAGE
-// TODO: UPDATE FUNCTIONALITY USING TERNARY
+import { createActivity, updateActivity } from '../../api/activityData';
 
 const initialState = {
   destination: '',
@@ -34,6 +30,14 @@ export default function TripForm({ obj }) {
     e.preventDefault();
     if (obj.id) {
       updateActivity(formInput).then(() => router.push(`/trips/${obj.id}`));
+    } else {
+      const payload = { ...formInput };
+      createActivity(payload).then(({ name }) => {
+        const putPayload = { id: name };
+        updateActivity(putPayload).then(() => {
+          router.push('/trips');
+        });
+      });
     }
   };
 
@@ -113,7 +117,7 @@ export default function TripForm({ obj }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button variant="success" type="submit">Create Member</Button>
+      <Button variant="success" type="submit">Create Trip</Button>
     </Form>
   );
 }
