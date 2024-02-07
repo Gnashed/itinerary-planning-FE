@@ -32,11 +32,8 @@ export default function ActivityForm({ obj }) {
       updateActivity(formInput).then(() => router.push(`/activity/${obj.id}`));
     } else {
       const payload = { ...formInput };
-      createActivity(payload).then(({ taco }) => {
-        const putPayload = { id: taco };
-        updateActivity(putPayload).then(() => {
-          router.push('/activityMenu');
-        });
+      createActivity(payload).then(() => {
+        router.push('/activityMenu');
       });
     }
   };
