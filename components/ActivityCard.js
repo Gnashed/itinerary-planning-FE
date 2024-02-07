@@ -34,7 +34,7 @@ export default function ActivityCard({ activityObj, onUpdate }) {
 
 ActivityCard.propTypes = {
   activityObj: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.string,
     name: PropTypes.string,
     description: PropTypes.string,
     length_of_time: PropTypes.string,
