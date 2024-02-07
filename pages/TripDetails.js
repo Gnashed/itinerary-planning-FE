@@ -8,13 +8,12 @@ import { getActivities } from '../api/activityData';
 export default function TripDetails() {
   const [tripActivity, setTripActivity] = useState([]);
 
-  // TODO: Work on API call. Need to retrieve activities for a specific trip.
-  const fetchData = () => {
+  const fetchActivities = () => {
     getActivities().then(setTripActivity);
   };
-  // TODO: Fix this
+
   useEffect(() => {
-    fetchData();
+    fetchActivities();
   });
 
   return (
@@ -50,7 +49,7 @@ export default function TripDetails() {
               <TripDetailsActivityCard
                 key={activity.id}
                 tripObj={activity}
-                onUpdate={fetchData}
+                onUpdate={fetchActivities}
               />
             ))}
           </Card>
