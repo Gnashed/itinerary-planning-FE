@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getSingleActivity } from '../../../api/activityData';
-import TripForm from '../../../components/forms/TripForm';
+import ActivityForm from '../../../components/forms/ActivityForm';
 
 export default function EditActivity() {
   const [editSingleActivity, setEditSingleActivity] = useState({});
@@ -12,5 +12,5 @@ export default function EditActivity() {
     getSingleActivity(id).then(setEditSingleActivity);
   }, [id]);
 
-  return (<TripForm obj={editSingleActivity} />);
+  return (<ActivityForm obj={editSingleActivity} />);
 }
