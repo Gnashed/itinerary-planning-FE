@@ -7,9 +7,8 @@ import { createActivity, updateActivity } from '../../api/activityData';
 const initialState = {
   name: '',
   description: '',
-  lengthOfTime: '',
+  length_of_time: '',
   cost: '',
-  planned: false,
 };
 
 export default function ActivityForm({ obj }) {
@@ -33,11 +32,8 @@ export default function ActivityForm({ obj }) {
       updateActivity(formInput).then(() => router.push(`/activity/${obj.id}`));
     } else {
       const payload = { ...formInput };
-      createActivity(payload).then(({ taco }) => {
-        const putPayload = { id: taco };
-        updateActivity(putPayload).then(() => {
-          router.push('/activityMenu');
-        });
+      createActivity(payload).then(() => {
+        router.push('/activityMenu');
       });
     }
   };
@@ -51,8 +47,8 @@ export default function ActivityForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter activity name"
-          name="activityName"
-          value={formInput.activityName}
+          name="name"
+          value={formInput.name}
           onChange={handleChange}
           required
         />
@@ -63,8 +59,8 @@ export default function ActivityForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter description"
-          name="activityDescription"
-          value={formInput.activityDescription}
+          name="description"
+          value={formInput.description}
           onChange={handleChange}
           required
         />
@@ -75,8 +71,8 @@ export default function ActivityForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter length of time"
-          name="lengthOfTime"
-          value={formInput.lengthOfTime}
+          name="length_of_time"
+          value={formInput.length_of_time}
           onChange={handleChange}
           required
         />
@@ -94,22 +90,6 @@ export default function ActivityForm({ obj }) {
         />
       </FloatingLabel>
 
-      {/* TOGGLE PLANNED  */}
-      <Form.Check
-        className="text-white mb-3"
-        type="switch"
-        id="planned"
-        name="planned"
-        label="Planned?"
-        checked={formInput.planned}
-        onChange={(e) => {
-          setFormInput((prevState) => ({
-            ...prevState,
-            planned: e.target.checked,
-          }));
-        }}
-      />
-
       {/* SUBMIT BUTTON  */}
       <Button variant="success" type="submit">{obj.id ? 'Update' : 'Create'} Activity</Button>
     </Form>
@@ -118,11 +98,10 @@ export default function ActivityForm({ obj }) {
 
 ActivityForm.propTypes = {
   obj: PropTypes.shape({
-    activityName: PropTypes.string,
-    activityDescription: PropTypes.string,
-    lengthOfTime: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    length_of_time: PropTypes.string,
     cost: PropTypes.string,
-    planned: PropTypes.bool,
     id: PropTypes.string,
   }),
 };
