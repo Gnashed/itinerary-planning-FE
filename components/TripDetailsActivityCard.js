@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 
 // NOTE: This is an activity card on the Trip Details page.
 
-export default function ActivityCard({ tripObj }) {
+export default function TripDetailsActivityCard({ tripObj }) {
   return (
     <Card className="bg-dark text-white">
       <Card.Img
@@ -19,7 +19,7 @@ export default function ActivityCard({ tripObj }) {
 }
 
 // Proptypes goes here...
-ActivityCard.propTypes = {
+TripDetailsActivityCard.propTypes = {
   tripObj: PropTypes.shape({
     name: PropTypes.string,
   }).isRequired,
