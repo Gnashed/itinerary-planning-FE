@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ActivityCard from '../components/TripCardDetails';
+import TripDetailsActivityCard from '../components/TripDetailsActivityCard';
 import { getActivities } from '../api/activityData';
 
 export default function TripDetails() {
@@ -47,7 +47,7 @@ export default function TripDetails() {
               <Card.Title>Activity Name</Card.Title>
             </Card.Body> */}
             {tripActivity.map((activity) => (
-              <ActivityCard
+              <TripDetailsActivityCard
                 key={activity.id}
                 tripObj={activity}
                 onUpdate={fetchData}
