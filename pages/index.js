@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Button } from 'react-bootstrap';
 // import { useAuth } from '../utils/context/authContext';
 // import AllTrips from '../components/AllTrips';
+// import TripDetails from './TripDetails';
 
 function Home() {
   // const { user } = useAuth();
@@ -21,7 +22,10 @@ function Home() {
       <Link href="/activityMenu" passHref>
         <Button variant="warning">Activities</Button>
       </Link>
-      {/* Testing to see if activities render */}
+      {/* Will remove/refactor this. Just an easy way to get to the Trip Details page */}
+      <Link href="/TripDetails" passHref>
+        <Button variant="primary">Trip Details</Button>
+      </Link>
     </div>
   );
 }
