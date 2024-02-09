@@ -5,6 +5,7 @@ import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import { createNewTrip, updateSingleTrip } from '../../api/tripsData';
 
 const initialState = {
+  travelerId: 1,
   destination: '',
   transportation: '',
   startDate: '',
@@ -32,11 +33,8 @@ export default function TripForm({ obj }) {
       updateSingleTrip(formInput).then(() => router.push(`/trips/${obj.id}`));
     } else {
       const payload = { ...formInput };
-      createNewTrip(payload).then(({ name }) => {
-        const putPayload = { id: name };
-        updateSingleTrip(putPayload).then(() => {
-          router.push('/trips');
-        });
+      createNewTrip(payload).then(() => {
+        router.push('/trips');
       });
     }
   };
@@ -62,8 +60,8 @@ export default function TripForm({ obj }) {
         <Form.Control
           type="text"
           placeholder="Enter transportation method"
-          name="transportationMethod"
-          value={formInput.transportationMethod}
+          name="transportation"
+          value={formInput.transportation}
           onChange={handleChange}
           required
         />
@@ -100,6 +98,7 @@ export default function TripForm({ obj }) {
 
 TripForm.propTypes = {
   obj: PropTypes.shape({
+    travelerId: PropTypes.number,
     destination: PropTypes.string,
     transportation: PropTypes.string,
     startDate: PropTypes.string,
