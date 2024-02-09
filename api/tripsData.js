@@ -12,12 +12,13 @@ const getTrips = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const createNewTrip = () => new Promise((resolve, reject) => {
+const createNewTrip = (payload) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/trips`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
     .then((data) => resolve(Object.values(data)))
@@ -30,6 +31,7 @@ const updateSingleTrip = (payload) => new Promise((resolve, reject) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify(payload),
   })
     .then((response) => response.json())
     .then((data) => resolve(Object.values(data)))
