@@ -27,6 +27,18 @@ const getSingleActivity = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getTripActivities = (tripId) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/activity?trip=${tripId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 // DELETE ACTIVITY
 const deleteActivity = (id) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/activity/${id}`, {
@@ -71,6 +83,7 @@ const updateActivity = (payload) => new Promise((resolve, reject) => {
 export {
   getActivities,
   getSingleActivity,
+  getTripActivities,
   deleteActivity,
   createActivity,
   updateActivity,
