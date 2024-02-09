@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TripDetailsActivityCard from '../components/TripDetailsActivityCard';
@@ -19,9 +19,9 @@ export default function TripDetails() {
   return (
     <>
       {/* TODO: Either figure out how to get flex direction to work or come up with another way to get this to render how I want. */}
-      <Container className="text-center">
+      <Container className="text-center mt-5">
         <Row>
-          <div className="trip-details">
+          <div className="trip-details mb-5">
             <Col>
               <p>Destination</p>
             </Col>
@@ -40,19 +40,13 @@ export default function TripDetails() {
         </Row>
 
         <Row>
-          <Card style={{ width: '18rem', height: '18rem' }}>
-            {/* <Card.Img variant="top" src="https://www.omnihotels.com/blog/wp-content/uploads/2015/08/atlcnn-skyline-night.jpg" />
-            <Card.Body>
-              <Card.Title>Activity Name</Card.Title>
-            </Card.Body> */}
-            {tripActivity.map((activity) => (
-              <TripDetailsActivityCard
-                key={activity.id}
-                tripObj={activity}
-                onUpdate={fetchActivities}
-              />
-            ))}
-          </Card>
+          {tripActivity.map((activity) => (
+            <TripDetailsActivityCard
+              key={activity.id}
+              tripObj={activity}
+              onUpdate={fetchActivities}
+            />
+          ))}
         </Row>
       </Container>
     </>
