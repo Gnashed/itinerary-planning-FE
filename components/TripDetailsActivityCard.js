@@ -6,10 +6,11 @@ import { PropTypes } from 'prop-types';
 
 export default function TripDetailsActivityCard({ tripObj }) {
   return (
-    <Card className="bg-dark text-white">
+    <Card className="bg-dark text-white mt-5 mb-2" style={{ width: '20rem' }}>
       <Card.Img
         src="https://www.omnihotels.com/blog/wp-content/uploads/2015/08/atlcnn-skyline-night.jpg"
         alt="Card image"
+        style={{ width: '20rem' }}
       />
       <Card.ImgOverlay>
         <p style={{ color: 'whitesmoke' }}>{tripObj.name}</p>
