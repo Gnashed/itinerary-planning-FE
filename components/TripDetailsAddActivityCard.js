@@ -2,14 +2,14 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { PropTypes } from 'prop-types';
 import { Button } from 'react-bootstrap';
-import { removeActivity } from '../api/tripsData';
+import { addActivity } from '../api/tripsData';
 
 // NOTE: This is an activity card on the Trip Details page.
 
-export default function TripDetailsActivityCard({ activity, trip, onUpdate }) {
+export default function TripDetailsAddActivityCard({ activity, trip, onUpdate }) {
   const activityObj = { activityId: activity.id };
-  const removeFromTrip = () => {
-    removeActivity(trip, activityObj).then(() => {
+  const addToTrip = () => {
+    addActivity(trip, activityObj).then(() => {
       onUpdate();
     });
   };
@@ -22,15 +22,18 @@ export default function TripDetailsActivityCard({ activity, trip, onUpdate }) {
         alt="Card image"
         style={{ width: '20rem' }}
       />
+      {/* <Card.ImgOverlay>
+        <p style={{ color: 'whitesmoke' }}>{activity.name}</p>
+      </Card.ImgOverlay> */}
       <Card.Footer>
-        <Button key={`${activity.id}-remove`} onClick={removeFromTrip}>Remove Activity</Button>
+        <Button key={`${activity.id}-add`} onClick={addToTrip}>Add Activity</Button>
       </Card.Footer>
     </Card>
   );
 }
 
 // Proptypes goes here...
-TripDetailsActivityCard.propTypes = {
+TripDetailsAddActivityCard.propTypes = {
   activity: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,

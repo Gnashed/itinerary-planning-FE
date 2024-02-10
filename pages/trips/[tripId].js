@@ -5,16 +5,18 @@ import Col from 'react-bootstrap/Col';
 import { useRouter } from 'next/router';
 import TripDetailsActivityCard from '../../components/TripDetailsActivityCard';
 import { getTripActivities } from '../../api/activityData';
-import { addActivity, getSingleTrip, removeActivity } from '../../api/tripsData';
+import { getSingleTrip } from '../../api/tripsData';
+import TripDetailsAddActivityCard from '../../components/TripDetailsAddActivityCard';
 
 export default function TripDetails() {
   const [tripActivity, setTripActivity] = useState([]);
   const [trip, setTrip] = useState({});
   const router = useRouter();
-  const { tripId } = router.query;
+  let { tripId } = router.query;
+  tripId = Number(tripId);
 
-  const getTrip = () => {
-    getSingleTrip(tripId).then(setTrip);
+  const getTrip = (id) => {
+    getSingleTrip(id).then(setTrip);
   };
 
   const fetchActivities = () => {
@@ -22,8 +24,8 @@ export default function TripDetails() {
   };
 
   useEffect(() => {
-    getTrip();
-  }, []);
+    getTrip(tripId);
+  }, [tripId]);
 
   useEffect(() => {
     fetchActivities();
@@ -52,29 +54,31 @@ export default function TripDetails() {
           <h3>Activities</h3>
         </Row>
 
+        <h2>Available Activities</h2>
         <Row>
           {tripActivity.map((activity) => (
-            activity.planned
+            activity.planned === false
               ? (
-                <TripDetailsActivityCard
-                  key={`${activity.id}-planned`}
-                  tripObj={activity}
+                <TripDetailsAddActivityCard
+                  key={`${activity.id}-unplanned`}
+                  activity={activity}
+                  trip={tripId}
                   onUpdate={fetchActivities}
-                  updateFunc={addActivity(tripId, { activityId: activity.id })}
                 />
               )
               : null
           ))}
         </Row>
+        <h2>Planned Activities</h2>
         <Row>
           {tripActivity.map((activity) => (
-            activity.planned === false
+            activity.planned === true
               ? (
                 <TripDetailsActivityCard
-                  key={`${activity.id}-unplanned`}
-                  tripObj={activity}
+                  key={`${activity.id}-planned`}
+                  activity={activity}
+                  trip={tripId}
                   onUpdate={fetchActivities}
-                  updateFunc={removeActivity(tripId, { activityId: activity.id })}
                 />
               )
               : null
