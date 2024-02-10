@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import TripCard from '../components/TripCard';
 import { getUserTrips } from '../api/tripsData';
+import { useAuth } from '../utils/context/authContext';
 
 export default function MyTrips() {
-  const [userTrips, setUserTrips] = useState([]);
+  const [trips, setTrips] = useState([]);
+  const { user } = useAuth();
 
-  const getAllUserTrips = () => {
-    getUserTrips().then(setUserTrips);
+  const getAllTheTrips = () => {
+    getUserTrips(user.uid).then(setTrips);
   };
   useEffect(() => {
-    getAllUserTrips();
+    getAllTheTrips();
   }, []);
 
   return (
     <>
-      <h1>User Trips</h1>
-      {userTrips.map((trip) => (
-        <TripCard key={trip} tripObj={trip} onUpdate={getAllUserTrips} />
+      <h1>All Trips</h1>
+      {trips.map((trip) => (
+        <TripCard key={trip.destination} tripObj={trip} onUpdate={getAllTheTrips} />
       ))}
     </>
   );

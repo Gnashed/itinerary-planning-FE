@@ -6,7 +6,6 @@ import { createNewTrip, updateSingleTrip } from '../../api/tripsData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  travelerId: 1,
   destination: '',
   transportation: '',
   startDate: '',

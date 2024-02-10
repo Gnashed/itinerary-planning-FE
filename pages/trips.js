@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TripCard from '../components/TripCard';
 import { getTrips } from '../api/tripsData';
 
-export default function CreateTrip() {
+export default function AllTrips() {
   const [trips, setTrips] = useState([]);
 
   const getAllTheTrips = () => {
