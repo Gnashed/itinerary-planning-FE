@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import { createNewTrip, updateSingleTrip } from '../../api/tripsData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  travelerId: 1,
   destination: '',
   transportation: '',
   startDate: '',
@@ -15,6 +15,7 @@ const initialState = {
 export default function TripForm({ obj }) {
   const [formInput, setFormInput] = useState(initialState);
   const router = useRouter();
+  const { user } = useAuth();
   useEffect(() => {
     if (obj.id) setFormInput(obj);
   }, [obj]);
@@ -33,7 +34,7 @@ export default function TripForm({ obj }) {
       updateSingleTrip(formInput).then(() => router.push(`/trips/${obj.id}`));
     } else {
       const payload = { ...formInput };
-      createNewTrip(payload).then(() => {
+      createNewTrip(user.uid, payload).then(() => {
         router.push('/trips');
       });
     }
