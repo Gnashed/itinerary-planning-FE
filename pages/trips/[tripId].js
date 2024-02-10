@@ -9,14 +9,13 @@ import { getSingleTrip } from '../../api/tripsData';
 import TripDetailsAddActivityCard from '../../components/TripDetailsAddActivityCard';
 
 export default function TripDetails() {
-  const [tripActivity, setTripActivity] = useState([]);
   const [trip, setTrip] = useState({});
+  const [tripActivity, setTripActivity] = useState([]);
   const router = useRouter();
-  let { tripId } = router.query;
-  tripId = Number(tripId);
+  const { tripId } = router.query;
 
-  const getTrip = (id) => {
-    getSingleTrip(id).then(setTrip);
+  const getTrip = () => {
+    getSingleTrip(tripId).then(setTrip);
   };
 
   const fetchActivities = () => {
@@ -24,8 +23,8 @@ export default function TripDetails() {
   };
 
   useEffect(() => {
-    getTrip(tripId);
-  }, [tripId]);
+    getTrip();
+  }, []);
 
   useEffect(() => {
     fetchActivities();
@@ -45,7 +44,7 @@ export default function TripDetails() {
             </Col>
             <Col>
               <p>Dates</p>
-              <p>{trip.start_date} - {trip.end_date}</p>
+              <p>{`${trip.start_date} - ${trip.end_date}`}</p>
             </Col>
           </div>
         </Row>
@@ -62,7 +61,7 @@ export default function TripDetails() {
                 <TripDetailsAddActivityCard
                   key={`${activity.id}-unplanned`}
                   activity={activity}
-                  trip={tripId}
+                  trip={Number(tripId)}
                   onUpdate={fetchActivities}
                 />
               )
@@ -77,7 +76,7 @@ export default function TripDetails() {
                 <TripDetailsActivityCard
                   key={`${activity.id}-planned`}
                   activity={activity}
-                  trip={tripId}
+                  trip={Number(tripId)}
                   onUpdate={fetchActivities}
                 />
               )
