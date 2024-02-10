@@ -44,6 +44,21 @@ const getActivityReview = (id) =>
       .catch(reject);
   });
 
+// CREATE ACTIVITY REVIEW
+const createActivityReview = (payload) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/activityreview`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
 const getTripActivities = (tripId) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/activity?trip=${tripId}`, {
@@ -101,4 +116,4 @@ const updateActivity = (payload) =>
       .catch(reject);
   });
 
-export { getActivities, getSingleActivity, getTripActivities, deleteActivity, createActivity, updateActivity, getActivityReview };
+export { getActivities, getSingleActivity, getTripActivities, deleteActivity, createActivity, updateActivity, getActivityReview, createActivityReview };
