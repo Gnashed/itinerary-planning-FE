@@ -16,18 +16,22 @@ export default function ActivityCard({ activityObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{activityObj.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{activityObj.length_of_time}</Card.Subtitle>
-        <Card.Text>
-          {activityObj.description}
-        </Card.Text>
+        <Card.Text>{activityObj.description}</Card.Text>
+        <Link href={`/activity/${activityObj.id}`} passHref>
+          <Button className="m-2" variant="primary">
+            View
+          </Button>
+        </Link>
         <Link href={`/activity/edit/${activityObj.id}`} passHref>
-          <Button variant="info">EDIT</Button>
+          <Button className="m-2" variant="info">
+            EDIT
+          </Button>
         </Link>
         <Button variant="danger" onClick={deleteThisActivity} className="m-2">
           DELETE
         </Button>
       </Card.Body>
       <Card.Footer className="text-muted text-center">${activityObj.cost}</Card.Footer>
-
     </Card>
   );
 }

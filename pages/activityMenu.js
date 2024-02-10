@@ -11,7 +11,7 @@ export default function Activities() {
 
   useEffect(() => {
     getAllActivities();
-  });
+  }, []);
 
   return (
     <div className="d-flex flex-wrap">
